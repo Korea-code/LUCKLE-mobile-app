@@ -4,10 +4,15 @@ import TakePhoto from '../screens/Photo/TakePhoto';
 import UploadPhoto from '../screens/Photo/UploadPhoto';
 import { createStackNavigator } from 'react-navigation-stack';
 
-const SelectPhotoTabs = createMaterialTopTabNavigator({
-  SelectPhoto,
-  TakePhoto,
-});
+const SelectPhotoTabs = createMaterialTopTabNavigator(
+  {
+    SelectPhoto,
+    TakePhoto,
+  },
+  {
+    tabBarPosition: 'bottom',
+  }
+);
 
 export default createStackNavigator({
   SelectPhotoTabs,
