@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { TouchableOpacity, Text } from 'react-native-gesture-handler';
 import constants from '../../constants';
+import AuthButton from '../../components/AuthButton';
 const View = styled.View`
   justify-content: center;
   align-items: center;
@@ -13,20 +13,6 @@ const Image = styled.Image`
   height: 70px;
   margin-top: 40px;
   margin-bottom: 80px;
-`;
-const ButtonContainer = styled.TouchableOpacity`
-  margin-bottom: 5px;
-`;
-const Button = styled.View`
-  background-color: ${(props) => props.theme.darkGreenColor};
-  padding: 10px;
-  width: ${constants.width - 150};
-  border-radius: 6px;
-`;
-const ButtonText = styled.Text`
-  color: white;
-  text-align: center;
-  font-weight: 300;
 `;
 
 const Subtitle = styled.Text`
@@ -40,16 +26,14 @@ export default ({ navigation }) => {
   return (
     <View>
       <Image resizeMode={'contain'} source={require('../../assets/logo.png')} />
-      <ButtonContainer onPress={() => navigation.navigate('Signup')}>
-        <Button>
-          <ButtonText>Sign up</ButtonText>
-        </Button>
-      </ButtonContainer>
-      <ButtonContainer onPress={() => navigation.navigate('Login')}>
-        <Button>
-          <ButtonText>Log in</ButtonText>
-        </Button>
-      </ButtonContainer>
+      <AuthButton
+        onPress={() => navigation.navigate('Signup')}
+        text={'Sign up'}
+      />
+      <AuthButton
+        onPress={() => navigation.navigate('Login')}
+        text={'Log in'}
+      />
       <Subtitle>Show your closet to the other side of the closet.</Subtitle>
     </View>
   );
