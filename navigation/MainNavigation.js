@@ -8,7 +8,6 @@ const MainNavigator = createStackNavigator(
   {
     TabNavigator,
     PhotoNavigator,
-    MessageNavigator,
   },
   {
     headerMode: 'none',
