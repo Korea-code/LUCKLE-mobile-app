@@ -33,7 +33,7 @@ const AuthInput = ({
         keyboardType={keyboardType}
         onChangeText={onChangeText}
         returnKeyType={returnKeyType}
-        onEndEditing={onEndEditing}
+        onSubmitEditing={onSubmitEditing}
       />
     </Container>
   );
@@ -55,7 +55,7 @@ AuthInput.propTypes = {
     'send',
     'done',
   ]).isRequired,
-  onEndEditing: PropTypes.func,
+  onSubmitEditing: PropTypes.func,
 
 };
 

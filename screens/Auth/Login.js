@@ -19,7 +19,7 @@ const Text = styled.Text``;
 export default ({navigation}) => {
   const emailInput = useInput('');
   const [loading, setLoading] = useState(false);
-  const [requestSecret] = useMutation(LOG_IN);
+  const [requestSecretMutation] = useMutation(LOG_IN);
   const handleLogIn = async () => {
     const { value } = emailInput;
     if (value === '') {
@@ -29,13 +29,22 @@ export default ({navigation}) => {
     ) {
       return Alert.alert('Please type an email');
     }
+
     try{
       setLoading(true);
-      const {data: {requestSecret} } = await requestSecret({ variables: {
+      const {data: { requestSecret } } = await requestSecretMutation({ variables: {
         email: emailInput.value 
       }});
-      Alert.alert('Check your email');
-      navigation.navigate("Confirm");
+      if(requestSecret){
+        Alert.alert('Check your email');
+        navigation.navigate("Confirm", {email: value});
+        return;
+      }else {
+        Alert.alert("Account not found");
+        navigation.navigate('Signup', {email: value});
+        return;
+      }
+     
     }catch(e){
       console.log(e);
       Alert.alert("Can't log in now");
