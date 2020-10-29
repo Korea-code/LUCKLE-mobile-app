@@ -21,7 +21,7 @@ const AuthInput = ({
   keyboardType = 'default',
   onChangeText,
   returnKeyType = 'default',
-  onEndEditing,
+  onSubmitEditing,
 }) => {
   return (
     <Container>

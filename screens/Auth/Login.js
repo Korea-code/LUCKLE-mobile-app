@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useMutation } from 'react-apollo-hooks';
 import { TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { Alert } from 'react-native';
@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import AuthButton from '../../components/AuthButton';
 import AuthInput from '../../components/AuthInput';
 import useInput from '../../hooks/useInput';
-import { LOG_IN } from './AuthQueries'
+import { LOG_IN } from './AuthQueries';
 
 const View = styled.View`
   justify-content: center;
@@ -16,8 +16,8 @@ const View = styled.View`
 
 const Text = styled.Text``;
 
-export default ({navigation}) => {
-  const emailInput = useInput('');
+export default ({ navigation }) => {
+  const emailInput = useInput(navigation.getParam('email', ''));
   const [loading, setLoading] = useState(false);
   const [requestSecretMutation] = useMutation(LOG_IN);
   const handleLogIn = async () => {
@@ -30,26 +30,29 @@ export default ({navigation}) => {
       return Alert.alert('Please type an email');
     }
 
-    try{
+    try {
       setLoading(true);
-      const {data: { requestSecret } } = await requestSecretMutation({ variables: {
-        email: emailInput.value 
-      }});
-      if(requestSecret){
+      const {
+        data: { requestSecret },
+      } = await requestSecretMutation({
+        variables: {
+          email: value,
+        },
+      });
+      if (requestSecret) {
         Alert.alert('Check your email');
-        navigation.navigate("Confirm", {email: value});
+        navigation.navigate('Confirm', { email: value });
         return;
-      }else {
-        Alert.alert("Account not found");
-        navigation.navigate('Signup', {email: value});
+      } else {
+        Alert.alert('Account not found');
+        navigation.navigate('Signup', { email: value });
         return;
       }
-     
-    }catch(e){
+    } catch (e) {
       console.log(e);
       Alert.alert("Can't log in now");
-    }finally{
-    setLoading(false);
+    } finally {
+      setLoading(false);
     }
   };
   return (

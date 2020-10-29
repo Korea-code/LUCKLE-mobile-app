@@ -9,10 +9,10 @@ const View = styled.View`
 `;
 
 const Image = styled.Image`
-  width: ${constants.width / 2}px;
-  height: 70px;
+  width: ${constants.width / 1.8}px;
+  height: 100px;
   margin-top: 40px;
-  margin-bottom: 80px;
+  margin-bottom: 20px;
 `;
 
 const Subtitle = styled.Text`
@@ -25,7 +25,7 @@ const Subtitle = styled.Text`
 export default ({ navigation }) => {
   return (
     <View>
-      <Image resizeMode={'contain'} source={require('../../assets/logo.png')} />
+      <Image source={require('../../assets/logo.png')} />
       <AuthButton
         onPress={() => navigation.navigate('Signup')}
         text={'Sign up'}

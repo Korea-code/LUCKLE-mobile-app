@@ -1,4 +1,5 @@
 import React from 'react';
+import { Image } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { Text } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -13,6 +14,13 @@ export default createStackNavigator(
       screen: Home,
       navigationOptions: {
         headerRight: () => <MessageLink />,
+        headerTitle: () => (
+          <Image
+            style={{ height: 40 }}
+            resizeMode="contain"
+            source={require('../assets/logo.png')}
+          />
+        ),
       },
     },
     MessageNavigator,
