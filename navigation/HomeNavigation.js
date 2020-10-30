@@ -7,6 +7,8 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Home from '../screens/Tabs/Home';
 import MessageLink from '../components/MessageLink';
 import MessageNavigator from './MessagesNavigation';
+import theme from '../theme';
+import { stackStyle } from '../styleConfig';
 
 export default createStackNavigator(
   {
@@ -27,5 +29,10 @@ export default createStackNavigator(
   },
   {
     initialRouteKey: 'Home',
+    defaultNavigationOptions: {
+      headerStyle: {
+        ...stackStyle,
+      },
+    },
   }
 );

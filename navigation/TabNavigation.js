@@ -2,14 +2,13 @@ import React from 'react';
 import { View } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
-import Home from '../screens/Tabs/Home';
 import HomeNavigator from './HomeNavigation';
 import Notification from '../screens/Tabs/Notification';
 import Profile from '../screens/Tabs/Profile';
 import Search from '../screens/Tabs/Search';
-import MessageLink from '../components/MessageLink';
 import NavIcon from '../components/NavIcon';
 import theme from '../theme';
+import { stackStyle } from '../styleConfig';
 const FUCUSED_COLOR = theme.darkGreenColor;
 const stackFactory = (initialRoute, configs) =>
   createStackNavigator({
@@ -17,6 +16,9 @@ const stackFactory = (initialRoute, configs) =>
       screen: initialRoute,
       navigationOptions: {
         ...configs,
+        headerStyle: {
+          ...stackStyle,
+        },
       },
     },
   });
@@ -29,7 +31,7 @@ export default createBottomTabNavigator(
         tabBarIcon: ({ focused }) => (
           <NavIcon
             name="md-home"
-            color={focused ? FUCUSED_COLOR : theme.blackColor}
+            color={focused ? FUCUSED_COLOR : theme.darkGreyColor}
           />
         ),
       },
@@ -40,7 +42,7 @@ export default createBottomTabNavigator(
         tabBarIcon: ({ focused }) => (
           <NavIcon
             name="md-search"
-            color={focused ? FUCUSED_COLOR : theme.blackColor}
+            color={focused ? FUCUSED_COLOR : theme.darkGreyColor}
           />
         ),
       },
@@ -50,13 +52,8 @@ export default createBottomTabNavigator(
       navigationOptions: {
         tabBarOnPress: ({ navigation }) =>
           navigation.navigate('PhotoNavigator'),
-      },
-      navigationOptions: {
-        tabBarIcon: ({ focused }) => (
-          <NavIcon
-            name="ios-add-circle"
-            color={focused ? FUCUSED_COLOR : theme.blackColor}
-          />
+        tabBarIcon: (
+          <NavIcon name="ios-add-circle" color={theme.darkGreyColor} />
         ),
       },
     },
@@ -66,7 +63,7 @@ export default createBottomTabNavigator(
         tabBarIcon: ({ focused }) => (
           <NavIcon
             name="md-notifications"
-            color={focused ? FUCUSED_COLOR : theme.blackColor}
+            color={focused ? FUCUSED_COLOR : theme.darkGreyColor}
           />
         ),
       },
@@ -77,7 +74,7 @@ export default createBottomTabNavigator(
         tabBarIcon: ({ focused }) => (
           <NavIcon
             name="md-person"
-            color={focused ? FUCUSED_COLOR : theme.blackColor}
+            color={focused ? FUCUSED_COLOR : theme.darkGreyColor}
           />
         ),
       },
@@ -86,6 +83,9 @@ export default createBottomTabNavigator(
   {
     tabBarOptions: {
       showLabel: false,
+      style: {
+        ...stackStyle,
+      },
     },
   }
 );
