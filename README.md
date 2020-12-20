@@ -1,4 +1,4 @@
-# LUCKLE IOS and Android app
+# Looks IOS and Android app
 
 Screens :
 
